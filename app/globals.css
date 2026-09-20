@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-deep: #050505;
+    --bg-secondary: #0B0C0E;
+    --surface-elevated: #111317;
+    --surface-card: #15171A;
+    --surface-card-hover: #1A1D22;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A9ABB0;
+    --text-muted: #71747C;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.18);
+    --accent-gold: #F5C518;
+    --accent-gold-hover: #E2B40D;
+    --accent-tint: rgba(245, 197, 24, 0.12);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #050505;
+    color: #FFFFFF;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #050505;
+    color: #FFFFFF;
+    overflow-x: hidden;
+    selection-background-color: #F5C518;
+    selection-color: #050505;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #F5C518;
+    color: #050505;
+  }
+}
+
+/* Custom utility & typography classes */
+.font-display {
+  font-family: var(--font-sora), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-sans {
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Glassmorphic header blur */
+.header-glass {
+  background-color: rgba(11, 12, 14, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle architectural grain */
+.bg-subtle-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Safe area padding for mobile bottom bar */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid #F5C518;
+  outline-offset: 2px;
+}
