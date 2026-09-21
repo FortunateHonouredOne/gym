@@ -1,82 +1,124 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import AnimatedStat from "./AnimatedStat";
 import { Star, MessageSquare, Clock, Users } from "lucide-react";
 
 export default function StatsStrip() {
+  const [isInView, setIsInView] = useState(() => {
+    // If running in an environment without IntersectionObserver, default to visible immediately
+    if (typeof window !== "undefined" && typeof IntersectionObserver === "undefined") {
+      return true;
+    }
+    return false;
+  });
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const element = sectionRef.current;
+    if (!element || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect(); // Trigger once only
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   const stats = [
     {
-      value: "4.9",
-      suffix: "★",
+      id: "rating",
       label: "GOOGLE RATING",
       subtext: "400+ verified member reviews",
       icon: Star,
+      end: 4.9,
+      start: 0.0,
+      decimals: 1,
+      suffix: "★",
       accent: true,
+      duration: 1500,
     },
     {
-      value: "400",
-      suffix: "+",
+      id: "reviews",
       label: "COMMUNITY REVIEWS",
       subtext: "Highest rated in Kuriachira",
       icon: MessageSquare,
+      end: 400,
+      start: 0,
+      decimals: 0,
+      suffix: "+",
       accent: false,
+      duration: 1700,
     },
     {
-      value: "5:00",
-      suffix: "AM",
+      id: "opening",
       label: "EARLY OPENING",
       subtext: "Mon – Sat (17 hrs continuous)",
       icon: Clock,
+      end: 5,
+      start: 0,
+      decimals: 0,
+      formatValue: (val: number) => `${Math.floor(val)}:00`,
+      suffix: "AM",
       accent: false,
+      duration: 1400,
     },
     {
-      value: "10 AM",
-      suffix: "– 1 PM",
+      id: "ladies",
       label: "LADIES SESSION",
       subtext: "Daily private women's training",
       icon: Users,
+      end: 10,
+      start: 0,
+      decimals: 0,
+      formatValue: (val: number) => `${Math.floor(val)} AM`,
+      suffix: "– 1 PM",
       accent: true,
+      duration: 1600,
     },
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-[#0B0C0E]/90 border-y border-white/10 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="py-12 sm:py-16 bg-[#0B0C0E]/90 border-y border-white/10 relative overflow-hidden"
+    >
       {/* Subtle warm glow behind stats */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-24 bg-[#F5C518]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-          {stats.map((stat, idx) => {
-            const Icon = stat.icon;
-            return (
-              <div
-                key={idx}
-                className="relative p-5 sm:p-6 rounded-2xl bg-[#111317] border border-white/10 hover:border-[#F5C518]/40 card-hover flex flex-col justify-between group"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#A9ABB0] group-hover:text-white transition-colors">
-                    {stat.label}
-                  </span>
-                  <div className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-[#F5C518]/10 flex items-center justify-center transition-colors">
-                    <Icon className="w-3.5 h-3.5 text-[#F5C518]" />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight leading-none">
-                    {stat.value}
-                    <span className="text-[#F5C518] text-xl sm:text-2xl lg:text-3xl font-bold ml-1">
-                      {stat.suffix}
-                    </span>
-                  </div>
-                  <div className="text-xs text-[#71747C] group-hover:text-[#A9ABB0] mt-2.5 transition-colors">
-                    {stat.subtext}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {stats.map((stat, idx) => (
+            <AnimatedStat
+              key={stat.id}
+              label={stat.label}
+              subtext={stat.subtext}
+              icon={stat.icon}
+              end={stat.end}
+              start={stat.start}
+              decimals={stat.decimals}
+              suffix={stat.suffix}
+              formatValue={stat.formatValue}
+              accent={stat.accent}
+              duration={stat.duration}
+              trigger={isInView}
+              delayIndex={idx}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
 
