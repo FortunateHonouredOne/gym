@@ -40,14 +40,16 @@ export default function LocationSection() {
             </div>
 
             {/* Address & Direct Contact Card */}
-            <div className="p-6 rounded-2xl bg-[#111317] border border-white/10 space-y-4">
-              <div className="flex items-start gap-3.5">
-                <MapPin className="w-5 h-5 text-[#F5C518] shrink-0 mt-1" />
+            <div className="p-6 sm:p-7 rounded-3xl bg-[#111317] border border-white/10 hover:border-[#F5C518]/30 card-hover space-y-5 shadow-xl">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[#F5C518]/10 border border-[#F5C518]/25 flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5 text-[#F5C518]" />
+                </div>
                 <div>
                   <div className="text-sm font-bold text-white uppercase tracking-wide">
                     Dark Gym City — Main Facility
                   </div>
-                  <div className="text-xs sm:text-sm text-[#A9ABB0] mt-0.5 leading-relaxed">
+                  <div className="text-xs sm:text-sm text-[#A9ABB0] mt-1 leading-relaxed">
                     {business.address.line1}
                     <br />
                     {business.address.line2}, {business.address.locality}
@@ -62,7 +64,7 @@ export default function LocationSection() {
                   href={business.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-2.5 px-4 rounded-xl bg-[#F5C518] hover:bg-[#E2B40D] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition shadow-md shadow-[#F5C518]/20"
+                  className="py-3 px-5 rounded-xl bg-[#F5C518] hover:bg-[#E2B40D] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition shadow-md shadow-[#F5C518]/20 hover:scale-[1.02]"
                 >
                   <Navigation className="w-3.5 h-3.5 fill-black" />
                   <span>Get Directions</span>
@@ -70,7 +72,7 @@ export default function LocationSection() {
 
                 <a
                   href={`tel:${business.phone}`}
-                  className="py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition"
+                  className="py-3 px-5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#F5C518]" />
                   <span>Call {business.phoneDisplay}</span>
@@ -80,7 +82,7 @@ export default function LocationSection() {
                   href={`https://wa.me/${business.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-2.5 px-4 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/30 text-emerald-400 font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition"
+                  className="py-3 px-5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/30 text-emerald-400 font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition"
                 >
                   <MessageSquare className="w-3.5 h-3.5" />
                   <span>WhatsApp</span>
@@ -89,12 +91,12 @@ export default function LocationSection() {
             </div>
 
             {/* Opening Hours Schedule Table */}
-            <div id="hours" className="p-6 rounded-2xl bg-[#111317] border border-white/10 space-y-4">
+            <div id="hours" className="p-6 sm:p-7 rounded-3xl bg-[#111317] border border-white/10 hover:border-[#F5C518]/30 card-hover space-y-4 shadow-xl">
               <div className="flex items-center justify-between pb-3 border-b border-white/10">
                 <span className="text-xs font-bold uppercase tracking-wider text-white">
                   WEEKLY OPERATING HOURS
                 </span>
-                <span className="text-[11px] text-[#A9ABB0]">
+                <span className="text-[11px] font-mono text-[#A9ABB0]">
                   Timezone: Asia/Kolkata
                 </span>
               </div>

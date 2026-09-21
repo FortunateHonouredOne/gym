@@ -69,15 +69,23 @@ export default function Membership() {
   ];
 
   return (
-    <section id="membership" className="py-24 sm:py-32 bg-[#0B0C0E] border-t border-white/5 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="membership" className="py-24 sm:py-32 bg-[#0B0C0E] border-t border-white/10 relative overflow-hidden">
+      {/* Subtle warm glow behind middle featured card */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#F5C518]/5 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="max-w-2xl mx-auto text-center mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#F5C518] block mb-3">
-            START TRAINING
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-display font-extrabold text-white uppercase tracking-tight">
-            READY TO TRAIN?
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#F5C518] mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F5C518]" />
+            <span>START TRAINING</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-display font-extrabold text-white uppercase tracking-tight leading-[1.04]">
+            FIND YOUR TRAINING
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#A9ABB0]">
+              STRUCTURE TODAY.
+            </span>
           </h2>
           <p className="text-sm sm:text-base text-[#A9ABB0] mt-3 leading-relaxed">
             Tell us what you are looking for and the Dark Gym City team will help you choose the right option for your goals.
@@ -91,29 +99,29 @@ export default function Membership() {
             return (
               <div
                 key={card.id}
-                className={`relative rounded-3xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
+                className={`relative rounded-3xl p-7 sm:p-9 flex flex-col justify-between transition-all duration-300 ${
                   card.highlight
-                    ? "bg-[#14161C] border-2 border-[#F5C518] shadow-2xl shadow-[#F5C518]/10 sm:-translate-y-2"
-                    : "bg-[#111317] border border-white/10 hover:border-white/20"
+                    ? "bg-[#141720] border-2 border-[#F5C518] shadow-2xl shadow-[#F5C518]/15 sm:-translate-y-2 card-hover"
+                    : "bg-[#111317] border border-white/10 hover:border-white/25 card-hover"
                 }`}
               >
                 {card.badge && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#F5C518] text-black text-[10px] font-extrabold tracking-wider uppercase py-1 px-3.5 rounded-full shadow-md">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#F5C518] text-black text-[10px] font-extrabold tracking-widest uppercase py-1.5 px-4 rounded-full shadow-lg">
                     {card.badge}
                   </div>
                 )}
 
                 <div>
-                  <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center justify-between mb-6">
                     <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
                       <Icon className="w-6 h-6 text-[#F5C518]" />
                     </div>
-                    <span className="text-xs font-semibold text-[#A9ABB0] uppercase tracking-wider">
+                    <span className="text-xs font-semibold text-[#A9ABB0] uppercase tracking-wider bg-black/40 px-3 py-1 rounded-full border border-white/5">
                       {card.subtitle}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-display font-extrabold text-white mb-3">
+                  <h3 className="text-2xl font-display font-extrabold text-white mb-3 tracking-tight">
                     {card.title}
                   </h3>
 
@@ -121,7 +129,7 @@ export default function Membership() {
                     {card.description}
                   </p>
 
-                  <div className="space-y-3 pt-4 border-t border-white/10 mb-8">
+                  <div className="space-y-3 pt-5 border-t border-white/10 mb-8">
                     {card.features.map((feat, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/90">
                         <Check className="w-4 h-4 text-[#F5C518] mt-0.5 shrink-0" />
@@ -133,10 +141,10 @@ export default function Membership() {
 
                 <button
                   onClick={() => handleCardAction(card.goal, card.track)}
-                  className={`w-full py-3.5 px-6 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+                  className={`w-full py-4 px-6 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
                     card.highlight
-                      ? "bg-[#F5C518] hover:bg-[#E2B40D] text-black shadow-lg shadow-[#F5C518]/25 hover:shadow-xl"
-                      : "bg-white/10 hover:bg-white/20 text-white border border-white/15"
+                      ? "bg-[#F5C518] hover:bg-[#E2B40D] text-black shadow-lg shadow-[#F5C518]/25 hover:shadow-xl hover:scale-[1.02]"
+                      : "bg-white/10 hover:bg-white/15 text-white border border-white/15 hover:border-white/30"
                   }`}
                 >
                   <span>{card.cta}</span>

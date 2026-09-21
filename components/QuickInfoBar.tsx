@@ -15,7 +15,7 @@ export default function QuickInfoBar() {
     },
     {
       id: "hours",
-      label: "GYM HOURS",
+      label: "OPERATING HOURS",
       value: "5:00 AM – 10:00 PM",
       subtext: "Mon – Sat (Sun Closed)",
       icon: Clock,
@@ -24,7 +24,7 @@ export default function QuickInfoBar() {
     },
     {
       id: "rating",
-      label: "GOOGLE RATING",
+      label: "GOOGLE REPUTATION",
       value: "4.9 ★★★★★",
       subtext: "400+ Verified Reviews",
       icon: Star,
@@ -44,7 +44,7 @@ export default function QuickInfoBar() {
 
   return (
     <section className="relative z-20 -mt-6 sm:-mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-[#0B0C0E] border border-white/10 rounded-2xl p-3 sm:p-4 shadow-2xl shadow-black/80 backdrop-blur-md">
+      <div className="bg-[#0B0C0E]/90 border border-white/10 rounded-2xl p-3 sm:p-4 shadow-2xl shadow-black/90 backdrop-blur-xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
           {items.map((item) => {
             const Icon = item.icon;
@@ -52,16 +52,18 @@ export default function QuickInfoBar() {
               <a
                 key={item.id}
                 href={item.href}
-                className="group p-3.5 sm:p-4 rounded-xl bg-[#111317] hover:bg-[#17191E] border border-white/5 hover:border-white/15 transition-all duration-200 flex flex-col justify-between"
+                className="group p-4 sm:p-5 rounded-xl bg-[#111317] hover:bg-[#16181E] border border-white/5 hover:border-[#F5C518]/30 card-hover flex flex-col justify-between"
               >
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <Icon className="w-4 h-4 text-[#F5C518]" />
+                    <div className="w-6 h-6 rounded-md bg-[#F5C518]/10 flex items-center justify-center">
+                      <Icon className="w-3.5 h-3.5 text-[#F5C518]" />
+                    </div>
                     <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#A9ABB0]">
                       {item.label}
                     </span>
                   </div>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#71747C] group-hover:text-white transition-colors" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#71747C] group-hover:text-[#F5C518] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                 </div>
 
                 <div>

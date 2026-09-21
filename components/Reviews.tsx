@@ -21,12 +21,16 @@ export default function Reviews() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#F5C518]" />
               <span>COMMUNITY REPUTATION</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-display font-extrabold text-white uppercase tracking-tight">
-              THRISSUR TRAINS WITH US.
+            <h2 className="text-3xl sm:text-5xl font-display font-extrabold text-white uppercase tracking-tight leading-[1.04]">
+              THRISSUR TRAINS
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#A9ABB0]">
+                WITH US.
+              </span>
             </h2>
           </div>
 
-          <div className="flex items-center gap-4 bg-[#111317] border border-white/10 p-4 rounded-2xl">
+          <div className="flex items-center gap-4 bg-[#111317] border border-white/10 hover:border-[#F5C518]/30 card-hover p-4 sm:p-5 rounded-2xl shadow-xl">
             <div className="text-4xl sm:text-5xl font-display font-black text-[#F5C518] leading-none">
               4.9
             </div>
@@ -49,8 +53,8 @@ export default function Reviews() {
         {/* Reviews Layout: Large Featured Review + Grid of companions */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Featured Large Review (5 cols) */}
-          <div className="lg:col-span-5 rounded-3xl bg-[#111317] border-2 border-white/15 p-8 sm:p-10 flex flex-col justify-between relative shadow-2xl">
-            <Quote className="w-12 h-12 text-[#F5C518]/20 absolute top-6 right-6" />
+          <div className="lg:col-span-5 rounded-3xl bg-[#111317] border border-white/15 hover:border-[#F5C518]/30 card-hover p-8 sm:p-10 flex flex-col justify-between relative shadow-2xl">
+            <Quote className="w-12 h-12 text-[#F5C518]/15 absolute top-6 right-6 pointer-events-none" />
 
             <div>
               <div className="flex text-[#F5C518] mb-4">
@@ -69,15 +73,20 @@ export default function Reviews() {
             </div>
 
             <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-              <div>
-                <div className="text-sm font-bold text-white">
-                  {featuredReview.author}
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-[#F5C518]/10 border border-[#F5C518]/25 text-[#F5C518] font-bold text-xs flex items-center justify-center">
+                  {featuredReview.author[0]}
                 </div>
-                <div className="text-xs text-[#71747C]">
-                  {featuredReview.date} • {featuredReview.verifiedSource}
+                <div>
+                  <div className="text-sm font-bold text-white">
+                    {featuredReview.author}
+                  </div>
+                  <div className="text-xs text-[#71747C]">
+                    {featuredReview.date} • {featuredReview.verifiedSource}
+                  </div>
                 </div>
               </div>
-              <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+              <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
                 VERIFIED
               </span>
             </div>
@@ -88,7 +97,7 @@ export default function Reviews() {
             {otherReviews.slice(0, 4).map((rev) => (
               <div
                 key={rev.id}
-                className="rounded-2xl bg-[#0B0C0E] border border-white/10 hover:border-white/20 p-6 flex flex-col justify-between transition-colors"
+                className="rounded-3xl bg-[#0B0C0E] border border-white/10 hover:border-[#F5C518]/30 card-hover p-6 sm:p-7 flex flex-col justify-between shadow-lg"
               >
                 <div>
                   <div className="flex text-[#F5C518] mb-3">
@@ -107,9 +116,14 @@ export default function Reviews() {
                 </div>
 
                 <div className="pt-3 border-t border-white/5 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-white">
-                    {rev.author}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-white/5 text-[#A9ABB0] font-bold text-[10px] flex items-center justify-center">
+                      {rev.author[0]}
+                    </div>
+                    <span className="text-xs font-semibold text-white">
+                      {rev.author}
+                    </span>
+                  </div>
                   <span className="text-[10px] text-[#71747C]">
                     {rev.verifiedSource}
                   </span>

@@ -95,7 +95,14 @@ export default function HeaderNav() {
           </nav>
 
           {/* Desktop Right Actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3.5">
+            {status && (
+              <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-semibold text-white/90">
+                <span className={`w-2 h-2 rounded-full ${status.isOpen ? "bg-emerald-400 animate-pulse" : "bg-amber-400"}`} />
+                <span>{status.statusTitle}</span>
+              </div>
+            )}
+
             <a
               href={`tel:${business.phone}`}
               onClick={() => trackEvent("phone_clicked", { source: "navbar_desktop" })}

@@ -3,6 +3,7 @@ import { ModalProvider } from "@/components/ModalContext";
 import HeaderNav from "@/components/HeaderNav";
 import Hero from "@/components/Hero";
 import QuickInfoBar from "@/components/QuickInfoBar";
+import MarqueeStrip from "@/components/MarqueeStrip";
 import BrandStatement from "@/components/BrandStatement";
 import StatsStrip from "@/components/StatsStrip";
 import Facilities from "@/components/Facilities";
@@ -31,6 +32,7 @@ export default function HomePage() {
         <main className="flex-1">
           <Hero />
           <QuickInfoBar />
+          <MarqueeStrip />
           <BrandStatement />
           <StatsStrip />
           <Facilities />
